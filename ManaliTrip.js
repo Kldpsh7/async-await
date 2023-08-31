@@ -24,9 +24,7 @@ let trip=async ()=>{
         })
     }
     
-    let car=await buyCar();
-    let place=await planTrip();
-    let journey=await travel();
+    let [car,place,journey]=await Promise.all([buyCar(),planTrip(),travel()])
 
     return `${car}\n${place}\n${journey}`
 }
