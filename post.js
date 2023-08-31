@@ -6,26 +6,44 @@ console.log('Last activity time = '+lastUserActivityTime)
 
 
 const userAct = async ()=>{
-    const updateLastSeen = new Promise((resolve,reject)=>{
-        setTimeout(() => {
+    function updateLastSeen(){
+        return new Promise((resolve,reject)=>{
             lastUserActivityTime=new Date().toLocaleString()
-            resolve()
-        }, 1000);
-    })
-
-    const createPost = new Promise ((resolve,reject)=>{
-        posts.push({title:'POST2'})
-        resolve()
-    })
-
-    const deletePost = new Promise((resolve,reject)=>{
-        posts.pop()
-        resolve()
-    })
-
-
-    await Promise.all([updateLastSeen,createPost,deletePost])
+            console.log('updated last activity time = '+lastUserActivityTime)
+               resolve()
+        })
     
+    }
+    function createPost() {
+        return new Promise ((resolve,reject)=>{
+            setTimeout(() => {
+                console.log('Adding post')
+                posts.push({title:'POST2'})
+                resolve()
+            }, 1000);
+        })
+    }
+
+    function deletePost() {
+        return new Promise((resolve,reject)=>{
+            setTimeout(() => {
+                console.log('Deleting Post')
+                posts.pop()
+                resolve()
+            }, 1000);
+        })
+    }
+
+    function getposts(){
+        return new Promise((resolve,reject)=>{
+            posts.forEach((post)=>console.log(post.title))
+            resolve()
+        })
+    }
+
+
+   
+    await Promise.all([updateLastSeen(),createPost(),getposts(),deletePost(),updateLastSeen(),getposts()])
 }
 
 userAct().then(()=>console.log(lastUserActivityTime,posts))
