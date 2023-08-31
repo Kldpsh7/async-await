@@ -31,7 +31,13 @@ const getButter=getPopcorn.then((t)=>{
     })
 })
 
-getButter.then((t)=>{
+const getDrink=getButter.then((t)=>{
+    return new Promise((resolve,reject)=>{
+        resolve(`Cold-Drink ${t}`)
+    })
+})
+
+getDrink.then((t)=>{
     console.log(`person3 : shows ${t}`)
 })
 

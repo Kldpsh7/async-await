@@ -10,6 +10,7 @@ const preMovie = async () =>{
 
     const getPopcorn = new Promise((resolve,reject)=> resolve('Popcorn'))
     const addbutter = new Promise((resolve,reject)=>resolve('Butter'))
+    const getDrink = new Promise((resolve,reject)=> resolve('Cold-Drink'))
 
     const ticket = await wifeBringingTicket;
     console.log('wife : here are the tickets');
@@ -22,9 +23,11 @@ const preMovie = async () =>{
     console.log('husband : okay')
     const butter = await addbutter;
     console.log('husband : here you go')
+    console.log('husband : let me also get some drinks')
+    const drink = await getDrink;
     console.log('wife : lets go in')
 
-    return `person3 : shows ${ticket} ${popcorn} ${butter}`
+    return `person3 : shows ${ticket} ${popcorn} ${butter} ${drink}`
 
 
 
